@@ -1,11 +1,11 @@
-import Categorie from '../models/Categories.js';
-import Product from '../models/Product.js';
-import SubCategorie from '../models/SubCategories.js';
-import Event from '../models/Event.js';
-import Order from '../models/Orders.js';
-import MethodsPayment from '../models/MethodPayment.js';
-import Banner from '../models/Banner.js';
-import Brand from '../models/Brands.js';
+import Categorie from "../models/Categories.js";
+import Product from "../models/Product.js";
+import SubCategorie from "../models/SubCategories.js";
+import Event from "../models/Event.js";
+import Order from "../models/Orders.js";
+import MethodsPayment from "../models/MethodPayment.js";
+import Banner from "../models/Banner.js";
+import Brand from "../models/Brands.js";
 
 //------------------------------------PRODUCTOS------------------------------------//
 
@@ -32,7 +32,7 @@ const newProduct = async (req, res) => {
       });
       product.subCategory = subCategoryProduct[0];
     } else {
-      const subCategorie = await SubCategorie.findOne({ name: 'urbanas' });
+      const subCategorie = await SubCategorie.findOne({ name: "urbanas" });
       product.subCategory = subCategorie;
     }
     const fotos = req.files;
@@ -54,7 +54,7 @@ const obtenerProducto = async (req, res) => {
 
   const product = await Product.findById(id);
   if (!product) {
-    const error = new Error('Producto no encontrado');
+    const error = new Error("Producto no encontrado");
     return res.status(404).json({ msg: error.message });
   }
   res.json(product);
@@ -67,7 +67,7 @@ const editarProducto = async (req, res) => {
 
   const product = await Product.findById(id);
   if (!product) {
-    const error = new Error('Producto no encontrado');
+    const error = new Error("Producto no encontrado");
     return res.status(404).json({ msg: error.message });
   }
   const fotos = req.files;
@@ -99,13 +99,13 @@ const eliminarProducto = async (req, res) => {
 
   const product = await Product.findById(id);
   if (!product) {
-    const error = new Error('Producto no encontrado');
+    const error = new Error("Producto no encontrado");
     return res.status(404).json({ msg: error.message });
   }
 
   try {
     await product.deleteOne();
-    res.json({ msg: 'Producto eliminado' });
+    res.json({ msg: "Producto eliminado" });
   } catch (error) {
     console.log(error);
   }
@@ -121,7 +121,6 @@ const agregarEvento = async (req, res) => {
 
   try {
     const productSaved = await product.save();
-    console.log(productSaved);
     res.json(productSaved);
   } catch (error) {
     console.log(error);
@@ -134,7 +133,7 @@ const eliminarEventoProducto = async (req, res) => {
   product.evento = null;
 
   try {
-    const productSaved = product.save();
+    const productSaved = await product.save();
     res.json(productSaved);
   } catch (error) {
     console.log(error);
@@ -153,7 +152,7 @@ const nuevaSubCategoria = async (req, res) => {
       });
       subCategoria.categorieReference = categoriaReferencia[0];
     } else {
-      const categoria = await Categorie.findOne({ name: 'indumentaria' });
+      const categoria = await Categorie.findOne({ name: "indumentaria" });
       subCategoria.categorieReference = categoria;
     }
     const subCategorieSaved = await subCategoria.save();
@@ -168,7 +167,7 @@ const eliminarSubCategory = async (req, res) => {
   const { id } = req.params;
   const subCategoria = await SubCategorie.findById(id);
   if (!subCategoria) {
-    res.json({ msg: 'No existe esta Categoria' });
+    res.json({ msg: "No existe esta Categoria" });
     return;
   }
   const products = await Product.find({ subCategory: { $in: id } });
@@ -181,7 +180,7 @@ const eliminarSubCategory = async (req, res) => {
   }
   try {
     await subCategoria.deleteOne();
-    res.json({ msg: 'Categoria Eliminada' });
+    res.json({ msg: "Categoria Eliminada" });
   } catch (error) {
     console.log(error);
   }
@@ -244,7 +243,7 @@ const eliminarEvento = async (req, res) => {
   const { id } = req.params;
   const event = await Event.findById(id);
   if (!event) {
-    res.json({ msg: 'Evento no encontrado' });
+    res.json({ msg: "Evento no encontrado" });
     return;
   }
 
@@ -259,7 +258,7 @@ const eliminarEvento = async (req, res) => {
 
   try {
     await event.deleteOne();
-    res.json({ msg: 'Evento Eliminado Correctamente' });
+    res.json({ msg: "Evento Eliminado Correctamente" });
   } catch (error) {
     console.log(error);
   }
@@ -287,7 +286,7 @@ const eliminarBanner = async (req, res) => {
 
   try {
     await banner.deleteOne();
-    res.json({ msg: 'Banner eliminado correctamente' });
+    res.json({ msg: "Banner eliminado correctamente" });
   } catch (error) {
     console.log(error);
   }
@@ -304,7 +303,7 @@ const pagoConfirmado = async (req, res) => {
   const { id } = req.params;
   const orden = await Order.findById(id);
 
-  orden.estado = 'Pago Confirmado' || orden.estado;
+  orden.estado = "Pago Confirmado" || orden.estado;
 
   try {
     await orden.save();
@@ -317,7 +316,7 @@ const pagoConfirmado = async (req, res) => {
 const pagoCancelado = async (req, res) => {
   const { id } = req.params;
   const orden = await Order.findById(id);
-  orden.estado = 'Pago Rechazado' || orden.estado;
+  orden.estado = "Pago Rechazado" || orden.estado;
   orden.comprobante = null || orden.comprobante;
 
   try {
@@ -345,12 +344,12 @@ const borrarMetodoPago = async (req, res) => {
   const { id } = req.params;
   const metodo = await MethodsPayment.findById(id);
   if (!metodo) {
-    res.json({ msg: 'Metodo no encontrado' });
+    res.json({ msg: "Metodo no encontrado" });
     return;
   }
   try {
     await metodo.deleteOne();
-    res.json({ msg: 'Metodo eliminado Correctamente' });
+    res.json({ msg: "Metodo eliminado Correctamente" });
   } catch (error) {
     console.log(error);
   }
@@ -411,7 +410,7 @@ const eliminarMarca = async (req, res) => {
 
   try {
     await marca.deleteOne();
-    res.json({ msg: 'Eliminado correctamente' });
+    res.json({ msg: "Eliminado correctamente" });
   } catch (error) {
     console.log(error);
   }
