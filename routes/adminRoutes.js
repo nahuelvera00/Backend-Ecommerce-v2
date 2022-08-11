@@ -71,7 +71,7 @@ router.get("/categories", [checkAuth, isAdmin], obtenerCategorias);
 //OBTENER Y CREAR EVENTOS
 router
   .route("/events")
-  .get([checkAuth, isAdmin], obtenerEventos)
+  .get(obtenerEventos)
   .post([checkAuth, isAdmin], nuevoEvento);
 
 //EDITAR EVENTO

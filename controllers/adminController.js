@@ -11,7 +11,8 @@ import Brand from "../models/Brands.js";
 
 //Crear un nuevo Producto - PASAR A PARTE PRIVADA CON AUTH
 const newProduct = async (req, res) => {
-  const { subCategory, brands, small, medium, large, extraLarge } = req.body;
+  const { subCategory, brands, small, medium, large, extraLarge, description } =
+    req.body;
   const brandProduct = await Brand.findById(brands);
   let photos = [];
 
@@ -40,6 +41,7 @@ const newProduct = async (req, res) => {
       photos.push(element.filename);
     });
     product.image = photos || product.image;
+    product.description = description || product.description;
 
     const productSaved = product;
     await productSaved.save();
