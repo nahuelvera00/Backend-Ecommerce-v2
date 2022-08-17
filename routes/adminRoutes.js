@@ -61,10 +61,10 @@ router.post("/sub-category/new", [checkAuth, isAdmin], nuevaSubCategoria);
 //eliminar SUB-CATEGORY
 router.delete("/sub-category/:id", [checkAuth, isAdmin], eliminarSubCategory);
 //obtener sub-categorias
-router.get("/sub-categories", [checkAuth, isAdmin], obtenerSubCategorias);
+router.get("/sub-categories", obtenerSubCategorias);
 
 //OBTENER CATEGORIAS
-router.get("/categories", [checkAuth, isAdmin], obtenerCategorias);
+router.get("/categories", obtenerCategorias);
 
 //------------------------------------------------EVENTOS- DESCUENTOS - ETC------------------------------------
 
