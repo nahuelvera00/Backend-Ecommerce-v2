@@ -330,6 +330,13 @@ const pagoCancelado = async (req, res) => {
 };
 
 //-------------------------------------------------Metodo de PAGO------------------------------------------------------//
+//OBTENER METODOS DE PAGO
+const obtenerMetodosPago = async (req, res) => {
+  const metodos = await MethodsPayment.find();
+
+  res.json(metodos);
+};
+
 //Crear nuevo metodo de pago
 const crearMetodoPago = async (req, res) => {
   const metodo = await new MethodsPayment(req.body);
@@ -434,6 +441,7 @@ export {
   eliminarEventoProducto,
   editarEvento,
   eliminarEvento,
+  obtenerMetodosPago,
   crearMetodoPago,
   borrarMetodoPago,
   crearBanner,

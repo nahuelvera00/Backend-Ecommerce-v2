@@ -1,10 +1,10 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
 const orderSchema = mongoose.Schema(
   {
     usuario: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'User',
+      ref: "User",
     },
     orden: [
       {
@@ -39,17 +39,17 @@ const orderSchema = mongoose.Schema(
       metodo: {
         type: String,
         trim: true,
-        default: '',
+        default: "",
       },
       nombreCuenta: {
         type: String,
         trim: true,
-        default: '',
+        default: "",
       },
       banco: {
         type: String,
         trim: true,
-        default: '',
+        default: "",
       },
       cbu: {
         type: Number,
@@ -59,12 +59,12 @@ const orderSchema = mongoose.Schema(
       cuit: {
         type: String,
         trim: true,
-        default: '',
+        default: "",
       },
     },
     estado: {
       type: String,
-      default: 'Pago Pendiente',
+      default: "Pago Pendiente",
     },
     comprobante: {
       type: String,
@@ -76,5 +76,5 @@ const orderSchema = mongoose.Schema(
   }
 );
 
-const Order = mongoose.model('Order', orderSchema);
+const Order = mongoose.model("Order", orderSchema);
 export default Order;

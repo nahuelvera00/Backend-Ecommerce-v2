@@ -1,4 +1,4 @@
-import express from 'express';
+import express from "express";
 
 //CONTROLLER
 import {
@@ -6,22 +6,22 @@ import {
   pagarOrden,
   cancelarOrden,
   obtenerOrdenes,
-} from '../controllers/userController.js';
+} from "../controllers/userController.js";
 //AUTH
-import { checkAuth } from '../middlewares/checkAuth.js';
+import { checkAuth } from "../middlewares/checkAuth.js";
 //ROUTER
 const router = express.Router();
 
 //-----------------------------------------------PEDIDOS-----------------------------------------------------------------
 //obtener pedidos
-router.post('/orders', checkAuth, obtenerOrdenes);
+router.get("/orders", checkAuth, obtenerOrdenes);
 //crear pedido
-router.post('/orders/new-order', checkAuth, nuevaOrden);
+router.post("/orders/new-order", checkAuth, nuevaOrden);
 
 //pagar pedido
-router.put('/orders/:id', checkAuth, pagarOrden);
+router.put("/orders/:id", checkAuth, pagarOrden);
 
 //Cancelar Orden
-router.delete('/orders/:id', checkAuth, cancelarOrden);
+router.delete("/orders/:id", checkAuth, cancelarOrden);
 
 export default router;

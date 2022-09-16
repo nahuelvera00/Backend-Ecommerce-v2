@@ -27,6 +27,7 @@ import {
   eliminarMarca,
   obtenerSubCategorias,
   obtenerCategorias,
+  obtenerMetodosPago,
 } from "../controllers/adminController.js";
 import { checkAuth, isAdmin } from "../middlewares/checkAuth.js";
 
@@ -98,6 +99,7 @@ router.post("/orders/:id", [checkAuth, isAdmin], pagoCancelado);
 //----------------------------------------------METODOS DE PAGO-----------------------------------------------//
 
 //Crear metodo de pago
+router.get("/methods-payment", obtenerMetodosPago);
 router.post("/methods-payment", [checkAuth, isAdmin], crearMetodoPago);
 router.delete("/methods-payment/:id", [checkAuth, isAdmin], borrarMetodoPago);
 
