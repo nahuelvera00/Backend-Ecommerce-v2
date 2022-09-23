@@ -297,9 +297,7 @@ const eliminarBanner = async (req, res) => {
 //--------------------------------------------------PEDIDOS-------------------------------------------//
 
 //Obtener pedidos propios del usuario
-const obtenerPedidos = async (req, res) => {
-  const { email } = req.usuario;
-};
+const obtenerPedidos = async (req, res) => {};
 //Cambia el estado del pedido
 const pagoConfirmado = async (req, res) => {
   const { id } = req.params;
